@@ -14,12 +14,22 @@ class StudentDetailView(DetailView):
 
 class StudentCreateView(CreateView):
     model = Student
-    form_class = StudentForm  
+    fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'enrollment_date', 'grade']
     template_name = 'studentmanage/student_form.html'
     success_url = reverse_lazy('studentmanage:student_list')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'add new students'
+        return context
+
 class StudentUpdateView(UpdateView):
     model = Student
-    form_class = StudentForm  
+    fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'enrollment_date', 'grade']
     template_name = 'studentmanage/student_form.html'
     success_url = reverse_lazy('studentmanage:student_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'edit student information'
+        return context

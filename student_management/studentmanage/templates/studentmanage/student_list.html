@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>学生列表</h1>
+<a href="{% url 'studentmanage:student_add' %}">add new student</a>
+<ul>
+    {% for student in students %}
+    <li>
+        <a href="{% url 'studentmanage:student_detail' student.pk %}">
+            {{ student.first_name }} {{ student.last_name }}
+        </a>
+    </li>
+    {% empty %}
+    <li>no record for this student。</li>
+    {% endfor %}
+</ul>
+{% endblock %}
