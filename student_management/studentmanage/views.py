@@ -1,6 +1,7 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Student
 from django.urls import reverse_lazy
+from .forms import StudentForm
 
 class StudentListView(ListView):
     model = Student
@@ -14,7 +15,7 @@ class StudentDetailView(DetailView):
 
 class StudentCreateView(CreateView):
     model = Student
-    fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'enrollment_date', 'grade']
+    form_class = StudentForm
     template_name = 'studentmanage/student_form.html'
     success_url = reverse_lazy('studentmanage:student_list')
 
@@ -25,7 +26,7 @@ class StudentCreateView(CreateView):
 
 class StudentUpdateView(UpdateView):
     model = Student
-    fields = ['first_name', 'last_name', 'email', 'date_of_birth', 'enrollment_date', 'grade']
+    form_class = StudentForm
     template_name = 'studentmanage/student_form.html'
     success_url = reverse_lazy('studentmanage:student_list')
 
