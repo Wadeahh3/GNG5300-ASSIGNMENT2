@@ -11,7 +11,7 @@ from .forms import RegisterForm
 from django.contrib.auth.models import User
 from .forms import UserRegistrationForm
 from django.views import View
-
+from django.db.models import Q
 
 
 
@@ -19,6 +19,12 @@ class StudentListView(ListView):
     model = Student
     template_name = 'studentmanage/student_list.html'
     context_object_name = 'students'
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        if query:
+            return Student.objects.filter(first_name__icontains=query) | Student.objects.filter(last_name__icontains=query)
+        else:
+            return Student.objects.all()
 
 class StudentDetailView(DetailView):
     model = Student
