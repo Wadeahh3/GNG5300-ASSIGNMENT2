@@ -2,10 +2,58 @@
 
 {% block content %}
 <h1>{{ title }}</h1>
+
+<!-- Start of form -->
 <form method="post">
     {% csrf_token %}
+    
+    <!-- Display form-wide (non-field) errors, such as general validation errors -->
     {{ form.non_field_errors }}
-    {{ form.as_p }}
-    <button type="submit">save</button>
+
+    <!-- Display first_name field and its errors -->
+    <div>
+        {{ form.first_name.label_tag }}
+        {{ form.first_name }}
+        {{ form.first_name.errors }}
+    </div>
+
+    <!-- Display last_name field and its errors -->
+    <div>
+        {{ form.last_name.label_tag }}
+        {{ form.last_name }}
+        {{ form.last_name.errors }}
+    </div>
+
+    <!-- Display email field and its errors -->
+    <div>
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {{ form.email.errors }}
+    </div>
+
+    <!-- Display date_of_birth field and its errors -->
+    <div>
+        {{ form.date_of_birth.label_tag }}
+        {{ form.date_of_birth }}
+        {{ form.date_of_birth.errors }}
+    </div>
+
+    <!-- Display enrollment_date field and its errors -->
+    <div>
+        {{ form.enrollment_date.label_tag }}
+        {{ form.enrollment_date }}
+        {{ form.enrollment_date.errors }}
+    </div>
+
+    <!-- Display grade field and its errors -->
+    <div>
+        {{ form.grade.label_tag }}
+        {{ form.grade }}
+        {{ form.grade.errors }}
+    </div>
+
+    <!-- Submit button for the form -->
+    <button type="submit">Save</button>
 </form>
 {% endblock %}
+
