@@ -16,6 +16,9 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from django.urls import path
+from . import views  
+
 
 app_name = 'studentmanage'
 
@@ -24,5 +27,6 @@ urlpatterns = [
     path('student/<int:pk>/', views.StudentDetailView.as_view(), name='student_detail'),
     path('student/add/', views.StudentCreateView.as_view(), name='student_add'),
     path('student/<int:pk>/edit/', views.StudentUpdateView.as_view(), name='student_edit'),
+
 ]
 

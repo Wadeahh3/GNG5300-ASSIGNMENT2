@@ -1,17 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h1>student list</h1>
-<a href="{% url 'studentmanage:student_add' %}">add new student</a>
-<ul>
-    {% for student in students %}
-    <li>
-        <a href="{% url 'studentmanage:student_detail' student.pk %}">
-            {{ student.first_name }} {{ student.last_name }}
-        </a>
-    </li>
-    {% empty %}
-    <li>no record for this student。</li>
-    {% endfor %}
-</ul>
+
+{% if user.is_authenticated %}
+    <a href="{% url 'studentmanage:student_add' %}">add new student</a>
+
+    <ul>
+        {% for student in students %}
+        <li>
+            <a href="{% url 'studentmanage:student_detail' student.pk %}">
+                {{ student.first_name }} {{ student.last_name }}
+            </a>
+        </li>
+        {% empty %}
+        <li>no record for this student。</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Please <a href="{% url 'login' %}">login</a> to see the student list.</p>
+{% endif %}
+
 {% endblock %}
