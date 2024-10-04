@@ -21,7 +21,7 @@ git clone https://github.com/Wadeahh3/GNG5300-ASSIGNMENT2.git
 
 Step 2: Activate the virtual environment
 use the command blow:
-venv\Scripts\activate
+env\Scripts\activate
 
 Step 3: Apply database migrations
 use the command blow:
